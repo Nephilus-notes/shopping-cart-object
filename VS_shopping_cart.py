@@ -42,13 +42,24 @@ class Cart():
                 break
  
         print(txt['delete_error'].format(product=product.title()))
+
+    @property
+    def total(self):
+        result = [product.item_total for product in self.cart]
+        return sum(result)
     
 class Product:
     def __init__(self, name, quantity, price):
         self.name = name
         self. quantity = quantity
         self.price = price
-    
+
+    @property
+    def item_total(self):
+        return self.quantity * self.price
+
+    def __str__(self):
+        return self.name.title()
 
 def main():
     # instantiating the class of Cart and making a persistent list for the products
@@ -87,4 +98,4 @@ def main():
 
         input(txt["continue"])
 
-main()
+# main()
